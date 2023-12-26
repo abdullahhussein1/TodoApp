@@ -1,4 +1,4 @@
-CREATE DATABASE perntodo ;
+CREATE DATABASE todoapp ;
 
 CREATE TABLE todos (
     id SERIAL PRIMARY KEY,
@@ -11,15 +11,6 @@ CREATE TABLE todos (
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMPTZ DEFAULT NULL,
 )
-
-CREATE USER abdullah WITH PASSWORD 'ise';
-ALTER ROLE abdullah SET client_encoding TO 'utf8';
-ALTER ROLE abdullah SET default_transaction_isolation TO 'read committed';
-ALTER ROLE abdullah SET timezone TO 'UTC';
-GRANT ALL PRIVILEGES ON DATABASE todoapp TO abdullah;
-
-ALTER DATABASE todoapp OWNER TO abdullah;
-ALTER TABLE todos OWNER TO abdullah;
 
 CREATE TABLE user_account (
     id SERIAL PRIMARY KEY,

@@ -139,7 +139,7 @@ const AddTodoDialog = ({
                 className="rounded-full bg-blue-700 sm:order-2 flex-auto w-full hover:bg-blue-800"
                 onMouseUp={async (e) => {
                   e.preventDefault();
-                  await axios.put(`http://localhost:5000/todos/${todo.id}`, {
+                  await axios.put(`http://localhost:8000/todos/${todo.id}`, {
                     title: todoInput,
                     note: todoNoteInput,
                     remind_date: date && date != todo.remind_date ? date : null,

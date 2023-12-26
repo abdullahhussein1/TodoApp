@@ -126,9 +126,11 @@ const TodosTab = ({ todos, setTodos, isLoaderVisible }: Props) => {
           onMouseUp={async (e) => {
             e.preventDefault();
             setTodoInput("");
-            const newTodo = await axios.post("http://localhost:5000/todos", {
+            const newTodo = await axios.post("http://localhost:8000/todos", {
               title: todoInput,
+              headers: { "Content-Type": "application/json" },
             });
+            console.log("New Todo:", newTodo.data);
             setTodos([...todos, newTodo.data]);
           }}
         >

@@ -79,7 +79,7 @@ const Todo = ({ todo, todos, setTodos }: Props) => {
           checked={isChecked}
           onChange={async () => {
             await axios
-              .put(`http://localhost:5000/todos/${todo.id}`, {
+              .put(`http://localhost:8000/todos/${todo.id}`, {
                 completed: !todo.completed,
               })
               .then(async () => {
@@ -162,7 +162,7 @@ const Todo = ({ todo, todos, setTodos }: Props) => {
         ].join(" ")}
         onClick={async () => {
           await axios
-            .put(`http://localhost:5000/todos/${todo.id}`, {
+            .put(`http://localhost:8000/todos/${todo.id}`, {
               pinned: !todo.pinned,
             })
             .then(() => {
@@ -198,7 +198,7 @@ export default Todo;
             <div
               onClick={async () => {
                 setTodos(todos.filter((curr) => curr.id != todo.id));
-                await axios.delete(`http://localhost:5000/todos/${todo.id}`);
+                await axios.delete(`http://localhost:8000/todos/${todo.id}`);
               }}
               className="flex text-slate-600 hover:text-slate-900 cursor-pointer items-center justify-start p-2 gap-2 hover:bg-slate-50 rounded-lg"
             >
