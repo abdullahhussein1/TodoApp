@@ -21,7 +21,6 @@ class Todo extends Model
     protected $casts = [
         'completed' => 'boolean',
         'pinned' => 'boolean',
-        // Add other fields as needed
     ];
 
     // Additional relationships or methods can be added here

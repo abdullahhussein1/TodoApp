@@ -32,7 +32,6 @@ type Props = {
 const Todo = ({ todo, todos, setTodos }: Props) => {
   const [isPinned, setIsPinned] = useState<boolean>(todo.pinned);
   const [todoTitle, setTodoTitle] = useState<string>(todo.title);
-  const [todoNote, setTodoNote] = useState(todo.note);
   const [isChecked, setIsChecked] = useState<boolean>(todo.completed);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -50,7 +49,7 @@ const Todo = ({ todo, todos, setTodos }: Props) => {
     } else if (isThisWeek(remindDate)) {
       return format(remindDate, "EEEE");
     } else {
-      return format(remindDate, "MM/dd/yyyy");
+      return format(remindDate, "PP");
     }
   };
 
@@ -122,31 +121,27 @@ const Todo = ({ todo, todos, setTodos }: Props) => {
           >
             {todoTitle}
           </p>
-          {!todo.completed && (
-            <div className="flex gap-1">
-              {todo.remind_date && (
-                <div
-                  className={[
-                    "flex items-center gap-[3px] text-xs",
-                    isRemindDatePassed && "text-red-500",
-                  ].join(" ")}
-                >
-                  <Calendar size={12} />
-                  <p className="leading-none">
-                    {formatRemindDate(new Date(todo.remind_date))}
-                  </p>
-                </div>
-              )}
+          {!todo.completed && todo.remind_date && (
+            <div
+              className={[
+                "flex items-center gap-[3px] text-xs",
+                isRemindDatePassed && "text-red-500",
+              ].join(" ")}
+            >
+              <Calendar size={12} />
+              <p className="leading-none">
+                {formatRemindDate(new Date(todo.remind_date))}
+              </p>
             </div>
           )}
         </div>
       </div>
       <EditTodoDialog
         todo={todo}
+        todos={todos}
+        setTodos={setTodos}
         todoTitle={todoTitle}
         setTodoTitle={setTodoTitle}
-        todoNote={todoNote}
-        setTodoNote={setTodoNote}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
       />
@@ -185,26 +180,3 @@ const Todo = ({ todo, todos, setTodos }: Props) => {
 };
 
 export default Todo;
-
-{
-  /* <Popover>
-          <PopoverTrigger>
-            <MoreHorizontalIcon
-              size={16}
-              className=" text-slate-500 hover:text-slate-900 transition-colors duration-300 "
-            />
-          </PopoverTrigger>
-          <PopoverContent className="flex flex-col  w-fit p-2 rounded-xl">
-            <div
-              onClick={async () => {
-                setTodos(todos.filter((curr) => curr.id != todo.id));
-                await axios.delete(`http://localhost:8000/todos/${todo.id}`);
-              }}
-              className="flex text-slate-600 hover:text-slate-900 cursor-pointer items-center justify-start p-2 gap-2 hover:bg-slate-50 rounded-lg"
-            >
-              <TrashIcon size={16} />
-              <p>Delete</p>
-            </div>
-          </PopoverContent>
-        </Popover> */
-}
