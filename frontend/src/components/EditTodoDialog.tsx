@@ -50,7 +50,7 @@ type Props = {
 
 type SelectSingleEventHandler = (value: Date | undefined) => void;
 
-const AddTodoDialog = ({
+const EditTodoDialog = ({
   todo,
   todoTitle,
   setTodoTitle,
@@ -167,4 +167,4 @@ const AddTodoDialog = ({
   );
 };
 
-export default AddTodoDialog;
+export default EditTodoDialog;
