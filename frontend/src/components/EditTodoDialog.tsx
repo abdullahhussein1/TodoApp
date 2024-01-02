@@ -84,7 +84,7 @@ const EditTodoDialog = ({
           <Textarea
             value={todoNoteInput ?? ""}
             onChange={(e) => setTodoNoteInput(e.target.value)}
-            className="rounded-xl resize-none  border-[0.5px] "
+            className="rounded-xl resize-none border-[0.5px] "
             id="note"
           />
 

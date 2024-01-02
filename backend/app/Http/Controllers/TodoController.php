@@ -24,10 +24,6 @@ class TodoController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
-            'note' => 'nullable|string',
-            'completed' => 'boolean',
-            'pinned' => 'boolean',
-            'remind_date' => 'date',
         ]);
 
         if ($validator->fails()) {
@@ -49,7 +45,7 @@ class TodoController extends Controller
             'note' => 'nullable|string',
             'completed' => 'boolean',
             'pinned' => 'boolean',
-            'remind_date' => 'date',
+            'remind_date' => 'nullable|date',
         ]);
 
         if ($validator->fails()) {

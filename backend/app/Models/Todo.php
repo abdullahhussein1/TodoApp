@@ -15,7 +15,6 @@ class Todo extends Model
         'completed',
         'pinned',
         'remind_date',
-        // Add other fields as needed
     ];
 
     protected $casts = [
@@ -23,5 +22,4 @@ class Todo extends Model
         'pinned' => 'boolean',
     ];
 
-    // Additional relationships or methods can be added here
 }

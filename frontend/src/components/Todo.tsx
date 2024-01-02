@@ -145,36 +145,38 @@ const Todo = ({ todo, todos, setTodos }: Props) => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
       />
-      <Star
-        size={15}
-        className={[
-          "flex-initial transition-colors cursor-pointer duration-300  mt-[1px]",
-          isChecked
-            ? "hidden"
-            : isPinned
-            ? "text-yellow-500 fill-yellow-500  hover:text-yellow-600 hover:fill-yellow-600"
-            : "text-slate-500  hover:text-slate-900",
-        ].join(" ")}
-        onClick={async () => {
-          await axios
-            .put(`http://localhost:8000/todos/${todo.id}`, {
-              pinned: !todo.pinned,
-            })
-            .then(() => {
-              const mapTodos = todos.map((tdo) => {
-                if (tdo.id == todo.id) {
-                  return {
-                    ...tdo,
-                    pinned: !tdo.pinned,
-                  };
-                }
-                return tdo;
+      <div>
+        <Star
+          size={15}
+          className={[
+            "flex-initial transition-colors cursor-pointer duration-300  mt-[1px]",
+            isChecked
+              ? "hidden"
+              : isPinned
+              ? "text-yellow-500 fill-yellow-500  hover:text-yellow-600 hover:fill-yellow-600"
+              : "text-slate-500  hover:text-slate-900",
+          ].join(" ")}
+          onClick={async () => {
+            await axios
+              .put(`http://localhost:8000/todos/${todo.id}`, {
+                pinned: !todo.pinned,
+              })
+              .then(() => {
+                const mapTodos = todos.map((tdo) => {
+                  if (tdo.id == todo.id) {
+                    return {
+                      ...tdo,
+                      pinned: !tdo.pinned,
+                    };
+                  }
+                  return tdo;
+                });
+                setTodos(mapTodos);
               });
-              setTodos(mapTodos);
-            });
-          setIsPinned(!isPinned);
-        }}
-      />
+            setIsPinned(!isPinned);
+          }}
+        />
+      </div>
     </div>
   );
 };
